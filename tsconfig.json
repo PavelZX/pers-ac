@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "module": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom", "esnext.asynciterable"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mt/pers-ac/contacts": ["libs/pers-ac/contacts/src/index.ts"],
+      "@mt/pers-ac/ui": ["libs/pers-ac/ui/src/index.ts"],
+      "@mt/pers-ac/core": ["libs/pers-ac/core/src/index.ts"],
+      "@mt/interfaces": ["libs/interfaces/src/index.ts"],
+      "@mt/api-services": ["libs/api-services/src/index.ts"],
+      "@mt/users": ["libs/users/src/index.ts"],
+      "@mt/api/users": ["libs/api/users/src/index.ts"],
+      "@mt/api/auth": ["libs/api/auth/src/index.ts"],
+      "@mt/pers-ac/auth": ["libs/pers-ac/auth/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
