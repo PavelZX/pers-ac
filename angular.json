@@ -1,0 +1,373 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "pers-ac": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/workspace:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/pers-ac",
+      "sourceRoot": "apps/pers-ac/src",
+      "prefix": "mt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/pers-ac",
+            "index": "apps/pers-ac/src/index.html",
+            "main": "apps/pers-ac/src/main.ts",
+            "polyfills": "apps/pers-ac/src/polyfills.ts",
+            "tsConfig": "apps/pers-ac/tsconfig.app.json",
+            "assets": [
+              "apps/pers-ac/src/favicon.ico",
+              "apps/pers-ac/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/pers-ac/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pers-ac/src/environments/environment.ts",
+                  "with": "apps/pers-ac/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "pers-ac:build",
+            "proxyConfig": "apps/pers-ac/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pers-ac:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pers-ac:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pers-ac/tsconfig.app.json",
+              "apps/pers-ac/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/pers-ac/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/pers-ac/jest.config.js",
+            "tsConfig": "apps/pers-ac/tsconfig.spec.json",
+            "setupFile": "apps/pers-ac/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "pers-ac-e2e": {
+      "root": "apps/pers-ac-e2e",
+      "sourceRoot": "apps/pers-ac-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/pers-ac-e2e/cypress.json",
+            "tsConfig": "apps/pers-ac-e2e/tsconfig.e2e.json",
+            "devServerTarget": "pers-ac:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pers-ac:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/pers-ac-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**", "!apps/pers-ac-e2e/**"]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "pers-ac-contacts": {
+      "projectType": "library",
+      "root": "libs/pers-ac/contacts",
+      "sourceRoot": "libs/pers-ac/contacts/src",
+      "prefix": "mt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pers-ac/contacts/tsconfig.lib.json",
+              "libs/pers-ac/contacts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pers-ac/contacts/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pers-ac/contacts/jest.config.js",
+            "tsConfig": "libs/pers-ac/contacts/tsconfig.spec.json",
+            "setupFile": "libs/pers-ac/contacts/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "pers-ac-ui": {
+      "projectType": "library",
+      "root": "libs/pers-ac/ui",
+      "sourceRoot": "libs/pers-ac/ui/src",
+      "prefix": "mt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pers-ac/ui/tsconfig.lib.json",
+              "libs/pers-ac/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pers-ac/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pers-ac/ui/jest.config.js",
+            "tsConfig": "libs/pers-ac/ui/tsconfig.spec.json",
+            "setupFile": "libs/pers-ac/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "pers-ac-core": {
+      "projectType": "library",
+      "root": "libs/pers-ac/core",
+      "sourceRoot": "libs/pers-ac/core/src",
+      "prefix": "mt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pers-ac/core/tsconfig.lib.json",
+              "libs/pers-ac/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pers-ac/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pers-ac/core/jest.config.js",
+            "tsConfig": "libs/pers-ac/core/tsconfig.spec.json",
+            "setupFile": "libs/pers-ac/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "interfaces": {
+      "root": "libs/interfaces",
+      "sourceRoot": "libs/interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/interfaces/tsconfig.lib.json",
+              "libs/interfaces/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/interfaces/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/interfaces/jest.config.js",
+            "tsConfig": "libs/interfaces/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api-services": {
+      "root": "libs/api-services",
+      "sourceRoot": "libs/api-services/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-services/tsconfig.lib.json",
+              "libs/api-services/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api-services/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-services/jest.config.js",
+            "tsConfig": "libs/api-services/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "pers-ac-auth": {
+      "projectType": "library",
+      "root": "libs/pers-ac/auth",
+      "sourceRoot": "libs/pers-ac/auth/src",
+      "prefix": "mt",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pers-ac/auth/tsconfig.lib.json",
+              "libs/pers-ac/auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pers-ac/auth/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pers-ac/auth/jest.config.js",
+            "tsConfig": "libs/pers-ac/auth/tsconfig.spec.json",
+            "setupFile": "libs/pers-ac/auth/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "pers-ac"
+}

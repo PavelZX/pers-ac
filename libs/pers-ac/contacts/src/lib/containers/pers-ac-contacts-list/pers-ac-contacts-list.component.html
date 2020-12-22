@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="search-bar">
+    <mt-pers-ac-search-bar
+      (action)="doAction($event)"
+    ></mt-pers-ac-search-bar>
+  </div>
+  <div class="results">
+    <mt-pers-ac-grid
+      [dataSource]="dataSource$ | async"
+      (action)="doAction($event)"
+    ></mt-pers-ac-grid>
+  </div>
+</div>

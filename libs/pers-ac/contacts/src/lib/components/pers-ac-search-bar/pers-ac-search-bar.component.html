@@ -1,0 +1,7 @@
+<div class="type-icon">
+  <i class="material-icons">search</i>
+</div>
+<input type="text" #searchInputEl placeholder="Search" />
+<div [hidden]="!searchInputEl.value" class="reset-icon" (click)="reset()">
+  <i class="material-icons">clear</i>
+</div>

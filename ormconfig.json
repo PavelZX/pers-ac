@@ -1,0 +1,30 @@
+[
+  {
+    "name": "development",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "pers-ac",
+    "password": "password123",
+    "database": "pers-ac",
+    "synchronize": false,
+    "logging": true,
+    "entities": ["dist/api/**/*.entity.js"],
+    "migrations": ["dist/api/migration/*.js"]
+  },
+  {
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "pers-ac",
+    "password": "password123",
+    "database": "pers-ac",
+    "synchronize": false,
+    "logging": true,
+    "entities": ["dist/api/**/*.entity.js"],
+    "migrations": ["dist/api/migrations/*.js"],
+    "cli": {
+      "migrationsDir": "apps/api/migrations"
+    }
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "npmScope": "mt",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "pers-ac-e2e": {
+      "tags": []
+    },
+    "pers-ac": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "pers-ac-contacts": {
+      "tags": []
+    },
+    "pers-ac-ui": {
+      "tags": []
+    },
+    "pers-ac-core": {
+      "tags": []
+    },
+    "interfaces": {
+      "tags": []
+    },
+    "api-services": {
+      "tags": []
+    },
+    "pers-ac-auth": {
+      "tags": []
+    }
+  }
+}
